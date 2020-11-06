@@ -1,0 +1,153 @@
+<%- include ('partial/header.ejs') %>
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <h1 class="title is-2 m-4 mt-6 ml-5">Informacion del socio</h1>
+        </h1>
+        <h2 class="subtitle ml-5">
+            <%= socio.nombre_socio %>
+        </h2>
+      </div>
+    </div>
+  </section>
+
+<div class="container m-5">
+    <% if (socio) { %>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Codigo</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.codigo_socio %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Nombre</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.nombre_socio %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Negocio</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+
+                <input class="input" type="text" value="<%= socio.nombre_compania %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Puesto</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.puesto_socio %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Direccion</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.direccion_socio %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Telefono</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.telefono_socio %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Membresia</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.membresia_socio %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Ultimo pago</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.ultimo_pago %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Proximo pago</label>
+        </div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.proximo_pago %>" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal"><label class="label">Pagos atrasados</label></div>
+        <div class="field-body">
+            <div class="control">
+                <input class="input" type="text" value="<%= socio.pagos_atrasados %>" readonly>
+            </div>
+        </div>
+    </div>
+    <% ;} else { %>
+    <p class="text-center">No hay socio.</p>
+    <% ;} %>
+</div>
+<a class="button is-success ml-5 mt-2 mb-2" href="/">
+    Volver
+</a>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+
+            // Add a click event on each of them
+            $navbarBurgers.forEach(el => {
+                el.addEventListener('click', () => {
+
+                    // Get the target from the "data-target" attribute
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+
+                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                });
+            });
+        }
+
+    });
+</script>
+</body>
+
+</html>

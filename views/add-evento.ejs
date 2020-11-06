@@ -1,0 +1,92 @@
+<%- include ('partial/header.ejs') %>
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <h1 class="title is-2 m-4 mt-6 ml-5">Agregar evento</h1>
+        </h1>
+      </div>
+    </div>
+  </section>
+    <div class="container m-5 pl-5 pr-5">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+        <form class="add-evento-form" action="/addevento" method="post" enctype="multipart/form-data">
+            <div class="field">
+                <label class="label"> Nombre</label>
+                <div class="control">
+                    <input type="text" class="input is-primary" name="nombre_evento" id="nombre_evento" placeholder="Nombre del evento" required>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label"> Descripcion </label>
+                <div class="control">
+                    <textarea class="textarea is-primary" name="descripcion_evento" id="nombre_evento" placeholder="Descripcion del evento"></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label"> Tipo de evento </label>
+                <div class="control">
+                    <div class="select is-info">
+                        <select id="tipo_evento" name="tipo_evento" required>
+                            <option selected disabled>Escoja tipo de evento</option>
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ESPECIAL">ESPECIAL</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label"> Fecha</label>
+                <div class="control">
+                    <input type="date" class="input is-primary" name="fecha_evento" id="fecha_evento" value="2020-01-01">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label"> Costo</label>
+                <div class="control">
+                    <input type="text" class="input is-primary" name="costo_evento" id="costo_evento" placeholder="Costo del evento" required>
+                </div>
+            </div>
+            <button type="submit" class="button is-primary">Agregar evento</button>
+        </form>
+    </div>
+    <div class="field pl-5">
+        <div class="control">
+            <a class="button is-danger ml-5 mt-2 mb-2" href="/eventos">
+                Volver
+            </a>
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+      
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+      
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+      
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+      
+            });
+          });
+        }
+      
+      });
+</script>
+</body>
+</html>

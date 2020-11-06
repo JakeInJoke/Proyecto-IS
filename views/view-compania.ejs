@@ -1,0 +1,74 @@
+<%- include ('partial/header.ejs') %>
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <h1 class="title is-2 m-4 mt-6 ml-5"><%= title %></h1>
+        </h1>
+        <h2 class="subtitle ml-5">
+            <a class="button is-danger  mt-2 mb-2" href="<%= actionLink %>">
+                <%= action %>
+            </a>
+        </h2>
+      </div>
+    </div>
+  </section>
+<div class="container is-flex is-justify-content-center">
+    <% if (compania.length > 0) { %>
+        <table class="table is-bordered is-fullwidth m-5">
+            <thead>
+                <tr class="is-text-align-center">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Ubicacion</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% compania.forEach((s, index) => { %>
+                    <tr>
+                        <td><%= s.nombre_compania %></td>
+                        <td><%= s.direccion_compania %></td>
+                        <td><%= s.nombre_tipo %></td>
+                        <td>
+                            <a href="/editnegocio/<%= s.id_compania %>" rel="noopener" class="button is-primary mr-2">Editar</a>
+                            <a href="/deletenegocio/<%= s.id_compania %>" class="button is-danger">Borrar</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% ;} else { %>
+        <p class="text-center">No players found. Go <a href="/addnegocio" >here</a> to add players.</p>
+    <% ;} %>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+  
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+  
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+  
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+  
+        });
+      });
+    }
+  
+  });
+</script>
+</body>
+</html>

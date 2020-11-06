@@ -1,0 +1,83 @@
+    <%- include ('partial/header.ejs') %>
+    <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+                <h1 class="title is-2 m-4 mt-6 ml-5"><%= title %></h1>
+            </h1>
+            <h2 class="subtitle ml-5">
+                <a class="button is-danger  mt-2 mb-2" href="<%= actionLink %>">
+                    <%= action %>
+                </a>
+            </h2>
+          </div>
+        </div>
+      </section>
+    
+    
+    <div class="container is-flex is-justify-content-center">
+        <% if (socio.length > 0) { %>
+            <table class="table is-bordered is-fullwidth m-5">
+                <thead>
+                    <tr class="has-text-centered">
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Negocio</th>
+                        <th scope="col">Puesto</th>
+                        <th scope="col">Membresia</th>
+                        <th scope="col">Pagos</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% socio.forEach((s, index) => { %>
+                        <tr>
+                            <th class="is-vcentered"><%= s.codigo_socio %></th>
+                            <td class="is-vcentered"><%= s.nombre_socio %></td>
+                            <td class="is-vcentered"><%= s.nombre_compania %></td>
+                            <td class="is-vcentered"><%= s.puesto_socio %></td>
+                            <td class="is-vcentered"><%= s.membresia_socio %></td>
+                            <td class="is-vcentered"><%= s.pagos_atrasados %></td>
+                            <td class="has-text-centered is-vcentered">
+                                <a href="/detailsocio/<%= s.id_socio %>" rel="noopener" class="button is-primary mr-2">Detalles</a>
+                                <a href="/editsocio/<%= s.id_socio %>" rel="noopener" class="button is-warning mr-2">Editar</a>
+                                <a href="/deletesocio/<%= s.id_socio %>" class="button is-danger">Borrar</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% ;} else { %>
+            <p class="text-center">No hay socios. Ve <a href="/add" >aquí</a> para agregar socios.</p>
+        <% ;} %>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+      
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+      
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+      
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+      
+            });
+          });
+        }
+      
+      });
+</script>
+</body>
+</html>

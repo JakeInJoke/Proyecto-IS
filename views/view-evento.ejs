@@ -1,0 +1,103 @@
+<%- include ('partial/header.ejs') %>
+<section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <h1 class="title is-2 m-4 mt-6 ml-5"><%= title %></h1>
+        </h1>
+        <h2 class="subtitle ml-5">
+            <a class="button is-danger  mt-2 mb-2" href="<%= actionLink %>">
+                <%= action %>
+            </a>
+        </h2>
+      </div>
+    </div>
+  </section>
+<div class="container is-flex is-justify-content-center">
+    <% if (evento.length > 0) { %>
+        <table class="table is-bordered is-fullwidth m-5">
+            <thead>
+                <tr class="has-text-centereds">
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Accion</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% evento.forEach((s, index) => { %>
+                    <tr>
+                        <td class="has-text-weight-bold is-vcentered"><%= s.codigo_evento %></td>
+                        <td class="is-vcentered"><%= s.nombre_evento %></td>
+                        <td class="is-vcentered"><%= s.tipo_evento %></td>
+                        <td class="is-vcentered"><%= s.fecha_evento %></td>
+                        <% if(s.modificable_evento == 1){ %>
+                          <td class="is-vcentered has-text-centered has-background-link-light has-text-link has-text-weight-bold	">PROGRAMADO</td>
+                          <td class="is-vcentered has-text-centered">
+                            <a href="/startevento/<%= s.id_evento %>" rel="noopener" class="button is-light mr-2">Iniciar</a>
+                          </td>
+                          <td class="has-text-centered">
+                            <a href="/detailevento/<%= s.id_evento %>" rel="noopener" class="button is-primary mr-2">Detalles</a>
+                            <a href="/editevento/<%= s.id_evento %>" rel="noopener" class="button is-warning mr-2">Editar</a>
+                            <a href="/deleteevento/<%= s.id_evento %>" class="button is-danger">Borrar</a>
+                          </td>
+                        <%} else if(s.modificable_evento == 2){ %>
+                           <td class="is-vcentered has-text-centered has-background-primary-light has-text-primary has-text-weight-bold	">INICIADO</td>
+                           <td class="is-vcentered has-text-centered">
+                            <a href="/endevento/<%= s.id_evento %>" rel="noopener" class="button is-light mr-2">Terminar</a>
+                          </td>
+                           <td class="has-text-centered">
+                            <a href="/addasist/<%= s.id_evento %>/<%= s.nombre_evento %>" rel="noopener" class="button is-primary mr-2">Agregar asistente</a>
+                            <a href="/addcoment/<%= s.id_evento %>/<%= s.nombre_evento %>" rel="noopener" class="button is-warning mr-2">Agregar comentarios</a>
+                           </td>
+                        <% } else { %>
+                          <td class="is-vcentered has-text-centered has-background-danger-light has-text-danger has-text-weight-bold	">TERMINADO</td>
+                          <td class="is-vcentered has-text-centered">
+                            <a href="/detailevento/<%= s.id_evento %>" rel="noopener" class="button is-light mr-2">Detalles</a>
+                          </td>
+                            <td class="has-text-centered">
+                            <a href="/detailasist/<%= s.id_evento %>" rel="noopener" class="button is-primary mr-2">Lista de asistentes</a>
+                            <a href="/detailcoment/<%= s.id_evento %>" rel="noopener" class="button is-warning mr-2">Comentarios</a>
+                            </td>
+                        <%}%>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% ;} else { %>
+        <p class="text-center">No hay eventos disponibles.</p>
+    <% ;} %>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+  
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+  
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+  
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+  
+        });
+      });
+    }
+  
+  });
+</script>
+</body>
+</html>

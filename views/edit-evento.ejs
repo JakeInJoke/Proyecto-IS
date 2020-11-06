@@ -1,0 +1,135 @@
+<%- include ('partial/header.ejs') %>
+<section class="hero is-warning">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <h1 class="title is-2 m-4 mt-6 ml-5">Editar informacion del evento</h1>
+        </h1>
+        <h2 class="subtitle ml-5">
+            <%= evento.nombre_evento %>
+        </h2>
+      </div>
+    </div>
+  </section>
+<div class="container m-5">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (evento) { %>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Codigo</label>
+            </div>
+            <div class="field-body">
+                <div class="control">
+                    <input class="input" type="text" name="codigo_evento" id="codigo_evento" value="<%= evento.codigo_evento %>" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Nombre</label>
+            </div>
+            <div class="field-body">
+                <div class="control">
+                    <input class="input" type="text" name="nombre_evento" id="nombre_evento" value="<%= evento.nombre_evento %>" required>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Descripcion</label>
+            </div>
+            <div class="field-body">
+                <div class="control">
+                    <textarea class="textarea" name="descripcion_evento" id="descripcion_evento"><%= evento.descripcion_evento %></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Tipo</label>
+            </div>
+            <div class="field-body">
+                <div class="control">
+                    <div class="select is-info">
+                        <select id="tipo_evento" name="tipo_evento" required>
+                            <option value="<%= evento.tipo_evento %>" selected><%= evento.tipo_evento %></option>
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ESPECIAL">ESPECIAL</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Fecha</label>
+            </div>
+            <div class="field-body">
+                <div class="control">
+                    <input class="input" type="date" name="fecha_evento" id="fecha_evento"value="<%= evento.fecha_evento %>" >
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Costo $:</label>
+            </div>
+            <div class="field-body">
+                <div class="control">
+                    <input class="input" type="text" name="costo_evento" id="costo_evento" value="<%= evento.costo_evento %>" >
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal pt-0">
+                <label>
+                <a class="button is-success" href="/eventos">
+                    Volver
+                </a>
+            </label>
+            </div>
+            <div class="field-body is-normal">
+                <div class="control">
+                    <button type="submit" class="button is-danger">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+        <% ;} else { %>
+        <p class="text-center">No hay evento.</p>
+        <% ;} %>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+  
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+  
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+  
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+  
+        });
+      });
+    }
+  
+  });
+</script>
+</body>
+</html>

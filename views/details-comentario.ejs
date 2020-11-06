@@ -1,0 +1,77 @@
+<%- include ('partial/header.ejs') %>
+<section class="hero is-success is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <h1 class="title is-2 m-4 mt-6 ml-5">Comentarios del evento</h1>
+        </h1>
+        <h2 id="evt" class="subtitle mt-1 ml-5">
+            <%= name.nombre_evento %>
+        </h2>
+      </div>
+    </div>
+  </section>
+  <div class="container is-flex is-flex-wrap-wrap is-justify-content-center">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+            <% if (coment.length > 0) { %>
+                <div class="field is-fullwidth m-5">
+                    <h1 class="title is-3 mt-5">
+                                        Comentarios
+                    </h1>
+                </div>
+                <div class="is-fullwidth m-5">
+                     <%  var cont = 1;
+                     coment.forEach((s, index) => { 
+                         %>
+                        <div class="field">
+                            <p class="control is-expanded">
+                              <h2 class="title is-4 has-border-primary p-3">Comentario <%= cont %></h2>
+                              <p id="ev_inp_sorter" class="textarea" readonly><%= s.texto_comentario %></p>
+                            </p>
+                          </div>
+                     <% cont ++; }) %>
+
+                </div>
+            <% ;} else { %>
+                <p class="has-text-centered m-5">No hay comentario sobre el evento</p>
+            <% ;} %>
+    </div>
+    <div class="field pl-5">
+        <div class="control">
+            <a class="button is-danger ml-5 mt-2 mb-2" href="/eventos">
+                Volver
+            </a>
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+      
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+      
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+      
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+      
+            });
+          });
+        }              
+      });
+</script>
+</body>
+</html>

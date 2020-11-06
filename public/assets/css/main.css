@@ -1,0 +1,60 @@
+html {
+  overflow: auto;
+}
+.is-vcentered {
+  vertical-align: middle;
+}
+.is-fullwidth {
+  width: 100%;
+}
+.is-max-height-200 {
+  max-height: 200px;
+}
+.has-overflow-auto {
+  overflow: auto;
+  overflow-x: hidden;
+}
+.has-border-primary {
+  border: 1px solid #00c4a7;
+}
+.nb-top {
+  border-top: none;
+}
+.nb-bottom {
+  border-bottom: none;
+}
+.nb-left {
+  border-left: none;
+}
+.nb-right {
+  border-right: none;
+}
+.scroll-primary::-webkit-scrollbar {
+  width: 8px; /* Tamaño del scroll en vertical */
+  height: 8px; /* Tamaño del scroll en horizontal */
+  /*display: none; /* Ocultar scroll */
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.scroll-primary::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.scroll-primary::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+/* Cambiamos el fondo cuando esté en active */
+.scroll-primary::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.scroll-primary::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 4px;
+}
+/* Cambiamos el fondo cuando esté en active o hover */
+.scroll-primary::-webkit-scrollbar-track:hover,
+.scroll-primary::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}

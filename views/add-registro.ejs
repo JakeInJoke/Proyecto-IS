@@ -1,0 +1,115 @@
+<%- include ('partial/header.ejs') %>
+<section class="hero is-warning is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <h1 class="title is-2 m-4 mt-6 ml-5">Agregar asistentes al evento</h1>
+        </h1>
+        <h2 id="evt" class="subtitle mt-1 ml-5">
+            <%= name %>
+        </h2>
+      </div>
+    </div>
+  </section>
+  <div class="container is-flex is-flex-wrap-wrap is-justify-content-center">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+            <div class="field is-fullwidth m-5">
+                <label class="label"> Buscar</label>
+                <div class="field is-grouped">
+                    <p class="control is-expanded">
+                      <input id="ev_inp_sorter" class="input" type="text" placeholder="Buscar socio">
+                    </p>
+                    <p class="control">
+                      <button id="ev_btn_socio" onclick="loadDoc()" class="button is-info">
+                        Buscar
+                      </button>
+                    </p>
+                  </div>
+            </div>
+            <div id="validate" class="field is-fullwidth m-5">
+
+            </div>
+            <% if (asist.length > 0) { %>
+                <div class="field is-fullwidth m-5">
+                    <h1 class="title is-3 mt-5">
+                                        Asistentes
+                    </h1>
+                </div>
+                <div class="is-fullwidth m-5">
+                    <table class="table is-bordered is-fullwidth">
+                        <thead>
+                            <tr class="has-text-centered">
+                                <th scope="col">Codigo</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ev_socio">
+                            <% asist.forEach((s, index) => { %>
+                                <tr>
+                                    <th class="is-vcentered f-sort"><%= s.codigo_socio %></th>
+                                    <td class="is-vcentered f-sort"><%= s.nombre_socio %></td>
+                                    <td class="has-text-centered is-vcentered">
+                                        <a href="/deleteasist/<%= s.id_socio %>/<%= eventId%>" rel="noopener" class="button is-danger mr-2">Eliminar</a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            <% ;} else { %>
+                <p class="has-text-centered m-5">Aun no hay asistentes al evento</p>
+            <% ;} %>
+    </div>
+    <div class="field pl-5">
+        <div class="control">
+            <a class="button is-danger ml-5 mt-2 mb-2" href="/eventos">
+                Volver
+            </a>
+        </div>
+    </div>
+    
+</div>
+<script>
+    function loadDoc() {
+        var codigo = document.getElementById('ev_inp_sorter').value;
+        var evento = document.getElementById('evt').textContent.trim();
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+           if (this.readyState == 4 && this.status == 200) {
+             document.getElementById("validate").innerHTML = this.response;
+            }
+          };
+        console.log("/validarasist/"+codigo)
+        xhttp.open("GET", "/validarasist/"+codigo+"/"+evento, true);
+        xhttp.send();
+     }
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+      
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+      
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+      
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+      
+            });
+          });
+        }              
+      });
+</script>
+</body>
+</html>
