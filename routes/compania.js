@@ -20,7 +20,7 @@ module.exports = {
     // execute query
     db.query(query, (err, result) => {
       if (err) {
-        res.redirect("/compania");
+        res.redirect("/negocios");
       }
       res.render("add-compania.ejs", {
         tipos: result,
@@ -59,11 +59,11 @@ module.exports = {
     // execute query
     db.query(comp, (err, resultC) => {
       if (err) {
-        res.redirect("/compania");
+        res.redirect("/negocios");
       }
       db.query(query, (err, result) => {
         if (err) {
-          res.redirect("/compania");
+          res.redirect("/negocios");
         }
         res.render("edit-compania.ejs", {
           comp: resultC[0],
